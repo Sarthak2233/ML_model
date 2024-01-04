@@ -40,16 +40,14 @@ low_spender_recent = df[(df['TotalSpent'] <= spending_threshold) & (df['Recency'
 high_spender_inactive = df[(df['TotalSpent'] > spending_threshold) & (df['Recency'] >= recency_threshold)]
 low_spender_inactive = df[(df['TotalSpent'] <= spending_threshold) & (df['Recency'] >= recency_threshold)]
 
-recency = high_spender_recent[['CustomerID','Quantity','Recency']]
+recency = high_spender_recent[['CustomerID','Quantity','Recency','TotalSpent']]
 
 recency['RecentScore'] = recency_score(recency)*100
 
 grouped_df = recency.groupby('CustomerID').agg({
-    'Quantity':'sum', 'Recency':"max", 'RecentScore': 'mean'
+    'Quantity':'sum', 'Recency':"max", 'RecentScore': 'mean', 'TotalSpent': 'mean'
 
 }).reset_index()
-
-print(f"\n \n",grouped_df.head())
 
 X = grouped_df.drop('CustomerID', axis=1)
 ms = MinMaxScaler()
@@ -61,7 +59,6 @@ cc = estimator.cluster_centers_
 
 print('Inertia is:', estimator.inertia_)
 print(cc)
-print(cc.shape)
 
 silhouette_score = silhouette_score(X, estimator.labels_)
 with open('freezed_data.pkl', 'wb') as f:

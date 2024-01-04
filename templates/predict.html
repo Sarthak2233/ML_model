@@ -24,6 +24,11 @@
 
     <div class="prediction">
       <div class="top-heading">
+
+        <b>{{result}}</b> <!--THis is from linear model  -->
+        <br>
+        <b>{{mean_squared_error}}</b><br>
+        <b>{{accuracy}}</b> <!--THis is from linear model  -->
         <b>
 
           {{ result_value}} <br>
@@ -38,5 +43,50 @@
         </b>
       </div>
     </div>
+    <div class='outer'>
+      <div class='inner'>
+        <p>Set the input values predict a Quantity to sell.The cluster should be from above.This model is for the customers who are high spenders and are recent.</p>
+
+        <form action='/predict1' method='POST'>
+
+          <div class='input_area'>
+            <label for="feature_01">Cluster</label>
+            <input type="number" id="feat_01" name="feature_01"
+                min="0" max="3" step="1">
+          </div>
+
+          <div class='input_area'>
+            <label for="feature_02">Recency</label>
+            <input type="number" id="feat_02" name="feature_02"
+                min="1" max="365" step="0.01">
+          </div>
+
+          <div class="input_area">
+              <label for="feature_03">Recency Score</label>
+              <input type="number" id="feat_03" name="feature_03"
+                     min="0" max="100" step="0.01" />
+          </div>
+
+          <div class="input_area">
+            <label for="feature_04">TotalSpent</label>
+            <input type="number" id="feat_04" name="feature_04"
+                   min="0" max="100", step="10"/>
+          </div>
+          <div class="input_area">
+            <label for="feature_05">Number of Customers</label>
+            <input type="number" id="feat_05" name="feature_05"
+                   min="0" max="100", step="10"/>
+          </div>
+
+      </div>
+
+      <div style="width:700px;" id="container">
+        <div>
+          <button type="submit" class="btn" onClick="window.location.href='/predict1
+          '">
+            Predict Quantity!
+          </button>
+        </div>
+      </div>
 
   </body>
