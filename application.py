@@ -28,7 +28,7 @@ def predict():
     if request.method == 'POST':
         input_val = request.form
 
-        if input_val != None:
+        if input_val:
             # collecting values
             vals = []
             for key, value in input_val.items():
