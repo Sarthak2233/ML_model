@@ -54,37 +54,6 @@ def scale_df(df):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ms = MinMaxScaler()
 
 grouped_df = clustering.grouped_df
